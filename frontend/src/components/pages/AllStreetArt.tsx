@@ -41,6 +41,8 @@ import { faEllipsisV, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons"
 import { useSearchStreetArt } from "../../Hooks/search";
 import SearchStreetArt from "../SearchStreetArt";
 import EditStreetArt from "../EditStreetArt";
+import MyAutoSearch from "../AutoComplete";
+import GoogleMaps from "../GoogleMapsAutoComplete";
 
 export interface StreetArtProps {}
 
@@ -78,6 +80,9 @@ const AllStreetArt: React.SFC<StreetArtProps> = () => {
               {/* <Container> */}
               {/* <Row> */}
               {/* <span> */}
+              <GoogleMaps />
+              <MyAutoSearch />
+
               <Input
                 type="text"
                 onKeyDown={(e) =>
