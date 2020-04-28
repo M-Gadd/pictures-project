@@ -50,8 +50,8 @@ func Init() (*mgo.Database, error) {
 	// Optional. Switch the session to a monotonic behavior.
 	session.SetMode(mgo.Monotonic, true)
 
-	//! db := session.DB(dbName)
-	db := session.DB("heroku_2w1jt19x")
+	db := session.DB(dbName)
+	// db := session.DB("heroku_2w1jt19x")
 
 	// c := session.DB("apiData").C("people")
 

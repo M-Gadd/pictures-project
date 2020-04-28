@@ -3,6 +3,7 @@ module github.com/M-Gadd/family-photos/api
 go 1.14
 
 require (
+	github.com/aws/aws-sdk-go v1.30.15
 	github.com/boj/redistore v0.0.0-20180917114910-cd5dcc76aeff // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/contrib v0.0.0-20191209060500-d6e26eeaa607
