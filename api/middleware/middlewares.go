@@ -1,0 +1,46 @@
+package middleware
+
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/M-Gadd/family-photos/api/auth"
+
+	"github.com/gin-gonic/gin"
+)
+
+func TokenAuthMiddleware() gin.HandlerFunc {
+	errList := make(map[string]string)
+	return func(c *gin.Context) {
+		err := auth.TokenValid(c.Request)
+		if err != nil {
+			errList["unauthorized"] = "Unauthorized"
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"status": http.StatusUnauthorized,
+				"error":  errList,
+			})
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}
+
+//CORSMiddleware ...
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		c.Writer.Header().Set("Access-Control-Max-Age", "86400")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, x-access-token")
+		c.Writer.Header().Set("Access-Control-Expose-Headers", "Content-Length")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		if c.Request.Method == "OPTIONS" {
+			fmt.Println("OPTIONS")
+			c.AbortWithStatus(200)
+		} else {
+			c.Next()
+		}
+	}
+}

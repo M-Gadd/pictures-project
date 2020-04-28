@@ -1,0 +1,9 @@
+# Reference the Dockerfiles to build into Docker images
+build:
+  docker:
+    web: frontend/Dockerfile
+    worker: api/Dockerfile
+  config:
+    app_env: production
+    # RAILS_ENV: development
+    # FOO: bar
