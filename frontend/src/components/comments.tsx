@@ -50,18 +50,6 @@ const Comments: React.SFC<LikesProps> = ({ streetArtId }) => {
     setComments(newComments.data.comments);
   };
 
-  //   id: "5e9a0f7ffc3f9ff9df54d7b1"
-  // authorId: "5e94943dfc3f9ffbfe496a02"
-  // streetArtId: "5e971c5efc3f9f707c4f5354"
-  // Body: "whaaaaat"
-  // author: {id: "5e94943dfc3f9ffbfe496a02", Email: "a@a.com", Password: "$2a$10$iC97XzMVa8S886u0YRSYKO8Df9Y64DOuP50Qv22garZrXIOCIDZv.", AuthType: "user", PictureURL: "https://streetartfullstack.s3.eu-west-3.amazonaws.com/users/5e971174fc3f9f2783ecd881.png", …}
-  // CreatedAt: "2020-04-17T22:20:15.566+02:00"
-  // UpdatedAt: "2020-04-17T22:20:
-
-  // console.log("********COMMMMENTSSS", comments);
-  // console.log("********ISOPEN", openComments);
-  // console.log("VISITS ", visits);
-
   // if (visits) {
   //   visits.map((visit: any) => {
   //     if (visit.userId === userId && visit.streetArtId == streetArtId) {
