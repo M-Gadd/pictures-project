@@ -6,6 +6,7 @@ import (
 	"github.com/M-Gadd/family-photos/api/controllers"
 
 	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,6 +19,7 @@ func (c Routes) StartServer() {
 
 	r := gin.Default()
 	r.Use(middleware.CORSMiddleware())
+	r.Use(static.Serve("/", static.LocalFile("./web", true)))
 
 	// database.Init()
 
