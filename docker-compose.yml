@@ -4,20 +4,20 @@ networks:
     driver: bridge
 
 services:
-  mongodb:
-    build: ./db
-    volumes:
-      - ./db/mongodb:/var/lib/mongodb
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGODB_USERNAME=${MONGODB_USERNAME}
-      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
-      - MONGODB_DATABASE=${MONGODB_DATABASE}
-      - MONGODB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME}
-      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
-    networks:
-      - app-tier
+  # mongodb:
+  #   build: ./db
+  #   volumes:
+  #     - ./db/mongodb:/var/lib/mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     - MONGODB_USERNAME=${MONGODB_USERNAME}
+  #     - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+  #     - MONGODB_DATABASE=${MONGODB_DATABASE}
+  #     - MONGODB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME}
+  #     - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+  #   networks:
+  #     - app-tier
 
   api:
     build:
@@ -28,16 +28,17 @@ services:
       - ./api:/github.com/M-Gadd/family-photos/api
     ports:
       - "5000:5000"
-    links:
-      - mongodb
+    # links:
+    #   - mongodb
     environment:
       - AWS_Access_Key_ID=${AWS_Access_Key_ID}
       - AWS_Secret_Access_Key=${AWS_Secret_Access_Key}
       - AWS_S3_BUCKET=${AWS_S3_BUCKET}
       - AWS_S3_REGION=${AWS_S3_REGION}
       - API_SECRET=${API_SECRET}
-    networks:
-      - app-tier
+      - MONGODB_URI=${MONGODB_URI}
+    # networks:
+    #   - app-tier
 
   frontend:
     build:

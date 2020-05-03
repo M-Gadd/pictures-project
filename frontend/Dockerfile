@@ -8,10 +8,14 @@ ARG app_env
 ENV NODE_ENV $app_env
 
 RUN mkdir -p /frontend
+
 WORKDIR /frontend
-COPY ./ ./
+
+COPY ./package.json ./
 
 RUN yarn install
+
+COPY ./ ./
 
 # if dev settings will use create-react start script for hot code relaoding via docker-compose shared volume
 # if production setting will build optimized static files and serve using http-server

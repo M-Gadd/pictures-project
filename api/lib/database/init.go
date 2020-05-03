@@ -25,14 +25,14 @@ func Init() (*mgo.Database, error) {
 	if bool {
 		uri = key
 		fmt.Println("I AM KEY:", uri)
-		dbName = "heroku_sst7nf0v"
+		// dbName = "heroku_sst7nf0v"
 		fmt.Println("I AM dName:", dbName)
 
 	} else {
 		// uri = "mongodb://host.docker.internal:27017/family-photos"
 		// uri = "mongodb://MGad:54321@mongodb:27017/family-photos"
 		uri = "MGad:54321@mongodb/family-photos"
-		dbName = "family-photos"
+		// dbName = "family-photos"
 	}
 
 	if uri == "" {
@@ -50,7 +50,7 @@ func Init() (*mgo.Database, error) {
 	// Optional. Switch the session to a monotonic behavior.
 	session.SetMode(mgo.Monotonic, true)
 
-	db := session.DB(dbName)
+	db := session.DB("family-photos")
 	// db := session.DB("heroku_2w1jt19x")
 
 	// c := session.DB("apiData").C("people")
