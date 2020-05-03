@@ -7,3 +7,5 @@ build:
     app_env: production
     # RAILS_ENV: development
     # FOO: bar
+######################################
+# heroku apps:create example

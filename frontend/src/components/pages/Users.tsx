@@ -38,7 +38,7 @@ const Users: React.SFC<UsersProps> = () => {
                           alt="no one"
                         />
                       </span>
-                      <span style={{ fontWeight: "bold" }}>{user.Email}</span>
+                      <span style={{ fontWeight: "bold" }}>{user.FirstName}</span>
                     </span>
                     <span style={{ float: "right" }}>
                       <Moment fromNow>{user.CreatedAt}</Moment>
