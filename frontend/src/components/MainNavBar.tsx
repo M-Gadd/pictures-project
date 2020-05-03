@@ -19,6 +19,8 @@ import {
 } from "reactstrap";
 import api from "../api";
 
+import { NavLink as NLink } from "react-router-dom";
+
 const MainNavBar = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,22 +50,22 @@ const MainNavBar = (props: any) => {
                 {/* <Row className="d-flex nav-jutstified"> */}
                 {/* <Col className="" xs={8}> */}
                 <NavItem>
-                  <NavLink style={{ color: "white" }} href="/">
+                  <NavLink style={{ color: "white" }} tag={NLink} to="/">
                     Home
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink style={{ color: "white" }} href="/streetart">
+                  <NavLink style={{ color: "white" }} tag={NLink} to="/streetart">
                     My uploads
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink style={{ color: "white" }} href="/users">
+                  <NavLink style={{ color: "white" }} tag={NLink} to="/users">
                     Users
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink style={{ color: "white" }} href="/streetarts">
+                  <NavLink style={{ color: "white" }} tag={NLink} to="/streetarts">
                     {" "}
                     Street Art
                   </NavLink>
@@ -74,7 +76,7 @@ const MainNavBar = (props: any) => {
                 {/* <Col xs={4}> */}
                 {!api.isLoggedIn() && (
                   <NavItem>
-                    <NavLink style={{ color: "white" }} href="/signup">
+                    <NavLink style={{ color: "white" }} tag={NLink} to="/signup">
                       Signup
                     </NavLink>
                   </NavItem>
@@ -82,8 +84,9 @@ const MainNavBar = (props: any) => {
                 {api.isLoggedIn() && (
                   <NavItem>
                     <NavLink
+                      tag={NLink}
                       style={{ color: "white" }}
-                      href="#"
+                      to="#"
                       onClick={() => loggingout()}
                     >
                       Logout
@@ -92,7 +95,7 @@ const MainNavBar = (props: any) => {
                 )}
                 {!api.isLoggedIn() && (
                   <NavItem>
-                    <NavLink style={{ color: "white" }} href="/login">
+                    <NavLink style={{ color: "white" }} tag={NLink} to="/login">
                       Login
                     </NavLink>
                   </NavItem>
