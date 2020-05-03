@@ -1,6 +1,9 @@
 package routes
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/M-Gadd/family-photos/api/middleware"
 
 	"github.com/M-Gadd/family-photos/api/controllers"
@@ -103,5 +106,14 @@ func (c Routes) StartServer() {
 		comment.DELETE("/comment/:id", controllers.DeleteComment)
 	}
 
-	r.Run(":5000")
+	var port string
+	if key, bool := os.LookupEnv("PORT"); bool {
+		port = ":" + key
+		fmt.Println("I AM PORT:", port)
+	} else {
+		port = ":5000"
+		fmt.Println("I AM NOT PORT:", port)
+	}
+
+	r.Run(port)
 }

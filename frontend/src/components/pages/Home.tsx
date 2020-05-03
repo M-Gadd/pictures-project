@@ -1,10 +1,13 @@
 import React from "react";
 import { Row, Col, FormText } from "reactstrap";
 import MyCarousel from "../Carousel";
+import { RouteProps } from "react-router-dom";
 
-export interface HomeProps {}
+// export interface HomeProps extends RouteProps {}
 
-const Home: React.SFC<HomeProps> = () => {
+// class Home extends React.Component<Props, {}> {
+
+const Home: React.SFC<RouteProps> = () => {
   return (
     <>
       <Row className="d-flex justify-content-center">

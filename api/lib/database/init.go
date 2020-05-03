@@ -26,7 +26,7 @@ func Init() (*mgo.Database, error) {
 		uri = key
 		fmt.Println("I AM KEY:", uri)
 		// dbName = "heroku_sst7nf0v"
-		dbName = "heroku_vgg0h9m4"
+		dbName = "heroku_gxhqkxjs"
 		fmt.Println("I AM dName:", dbName)
 
 	} else {

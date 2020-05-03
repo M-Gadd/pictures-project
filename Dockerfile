@@ -4,14 +4,18 @@ ADD . /app
 WORKDIR /app/api
 RUN go mod download
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-w" -a -o /main
+
+
 # Build the React application
-FROM node:alpine AS node_builder
+FROM node  AS node_builder
+COPY --from=builder /app/frontend/package.json ./
+RUN yarn install
+RUN yarn global add http-server
 COPY --from=builder /app/frontend ./
-RUN rm -rf package-lock.json yarn.lock
+# RUN rm -rf package-lock.json yarn.lock
 # RUN npm install -g node-sass@4.14.0 --unsafe-perm=true --allow-root
-RUN npm install -g http-server
-RUN npm install
-RUN npm run build
+# RUN npm install -g http-server
+RUN yarn build
 # Final stage build, this will be the container
 # that we will deploy to production
 FROM alpine:latest
