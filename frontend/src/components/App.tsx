@@ -17,13 +17,13 @@ const App: React.SFC<AppProps> = () => {
       <MainNavBar />
       <Switch>
         {/* <Route path="/about" component={About} /> */}
+        <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />/{/*  */}
         <Route path="/streetart" component={MyUploads} />
         <Route path="/streetarts" component={AllStreetArt} />
         <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
-        <Route path="/" component={Home} />
         {/* <Route render={() => <h2>404</h2>} /> */}
       </Switch>
     </div>
