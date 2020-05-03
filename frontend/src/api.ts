@@ -9,7 +9,8 @@ export function setAuthorizationToken(token: any) {
 }
 
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === "production" ? "/api" : "http://localhost:5000/api",
+  // baseURL: process.env.NODE_ENV === "production" ? "/api" : "http://localhost:5000/api",
+  baseURL: process.env.APP_ENV === "production" ? "/api" : "http://localhost:5000/api",
   // baseURL: "http://localhost:5000/api",
   withCredentials: true,
   headers: { Authorization: localStorage.token ? `Bearer ${localStorage.token}` : "" },

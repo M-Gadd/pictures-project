@@ -1,4 +1,4 @@
-FROM node
+FROM node as build
 
 # if left blank app will run with dev settings
 # to build production image run:
@@ -13,17 +13,28 @@ COPY ./ ./
 
 RUN yarn install
 
+RUN yarn build
+
 # if dev settings will use create-react start script for hot code relaoding via docker-compose shared volume
 # if production setting will build optimized static files and serve using http-server
-CMD if [ ${NODE_ENV} = production ]; \
-	then \
-	# npm install -g http-server && \
-	yarn global add http-server && \
-	yarn build && \
-	cd build && \
-	hs -p 3000; \
-	else \
-	yarn start; \
-	fi
+# CMD if [ ${NODE_ENV} = production ]; \
+# 	then \
+# 	# npm install -g http-server && \
+# 	yarn global add http-server && \
+# 	yarn build && \
+# 	cd build && \
+# 	hs -p 3000; \
+# 	else \
+# 	yarn start; \
+# 	fi
 
-EXPOSE 3000
+# EXPOSE 3000
+
+
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /frontend/build /usr/share/nginx/html
+# new
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -47,6 +47,16 @@ services:
     volumes:
       - ./frontend/src:/frontend/src
     ports:
-      - "3000:3000"
+      - "3000:80"
     stdin_open: true
     tty: true
+  # nginx:
+  #   depends_on:
+  #     - api
+  #     - frontend
+  #   restart: always
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4000:80"
