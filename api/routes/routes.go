@@ -1,11 +1,15 @@
 package routes
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/M-Gadd/family-photos/api/middleware"
 
 	"github.com/M-Gadd/family-photos/api/controllers"
 
 	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,6 +22,7 @@ func (c Routes) StartServer() {
 
 	r := gin.Default()
 	r.Use(middleware.CORSMiddleware())
+	r.Use(static.Serve("/", static.LocalFile("./web", true)))
 
 	// database.Init()
 
@@ -101,5 +106,14 @@ func (c Routes) StartServer() {
 		comment.DELETE("/comment/:id", controllers.DeleteComment)
 	}
 
-	r.Run(":5000")
+	var port string
+	if key, bool := os.LookupEnv("PORT"); bool {
+		port = ":" + key
+		fmt.Println("I AM PORT:", port)
+	} else {
+		port = ":5000"
+		fmt.Println("I AM NOT PORT:", port)
+	}
+
+	r.Run(port)
 }

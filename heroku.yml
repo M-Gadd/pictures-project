@@ -1,11 +1,11 @@
 # Reference the Dockerfiles to build into Docker images
-build:
-  docker:
-    web: frontend/Dockerfile
-    worker: api/Dockerfile
-  config:
-    app_env: production
-    # RAILS_ENV: development
-    # FOO: bar
+# build:
+#   docker:
+#     web: frontend/Dockerfile
+#     worker: api/Dockerfile
+#   config:
+#     app_env: production
+# RAILS_ENV: development
+# FOO: bar
 ######################################
 # heroku apps:create example

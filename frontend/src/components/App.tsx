@@ -16,8 +16,7 @@ const App: React.SFC<AppProps> = () => {
     <div>
       <MainNavBar />
       <Switch>
-        {/* <Route path="/about" component={About} /> */}
-        <Route exact path="/" component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />/{/*  */}
         <Route path="/streetart" component={MyUploads} />
@@ -31,3 +30,6 @@ const App: React.SFC<AppProps> = () => {
 };
 
 export default App;
+
+// /* tslint:disable */
+// {/* @ts-ignore */}
