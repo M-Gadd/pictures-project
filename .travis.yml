@@ -6,7 +6,7 @@ services:
 before-install:
   - docker build -t mgad/docker-react ./frontend
   # - chmod +x ./scripts/build.sh
-  # - chmod +x ./continous_deployment.sh
+  - chmod +x ./continous_deployment.sh
 
 script:
   - docker run -e CI=true mgad/docker-react npm run test
