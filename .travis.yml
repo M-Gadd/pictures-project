@@ -20,7 +20,7 @@ deploy:
       # production: my-app-production
     on:
       branch: master
-after_deploy:
+after-deploy:
   - echo "DONE....."
 
 notifications:
