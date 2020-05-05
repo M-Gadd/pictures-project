@@ -5,6 +5,8 @@ services:
 before-install:
   - docker build -t mgad/docker-react ./frontend
   - chmod +x ./continous_deployment.sh
+  - docker login --username=mgad --password="$(HEROKU_AUTH)" registry.heroku.com
+
 script:
   - docker run -e CI=true mgad/docker-react npm run test
   - "./continous_deployment.sh"
