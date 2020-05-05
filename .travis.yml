@@ -15,12 +15,14 @@ deploy:
   provider: heroku
   api_key:
     secure: DhFv0uL3mck84i/bA76IqckH/2b3mmNa5FpsRW/Fa6A7GrI4Vh+F4jpUNEYZBg63ff530A41S3JBzSt1vnAFy2vzhzkNXjRWB2wdro5XwvM1c4+t72pYS30VzgVDRci4RpzozRLE07PSuGm86iPKf4O5kjtVcCE10Q5CsmJQKm/3I+RWTPFbM4xLRVXMItAGtni/96OEdM7OuNWEfhUJrK7ysocHun1qUkXxfzvGOWqGsAnKsB7VZnOaDo+ui/7rDb9zn5+Oz94mGpzdpJvnvQfzdegtWOw7In4ODY2ESqJTAHuPUt320uLeMrKODe19AKzApARyHpiBaSEt+54MkOWqhAi1MihkntryQ6rOklue635yE5fDr3Y3Ii3I3z++bkX4KKfDTmNEabbC9dwrMUe26jhSBKgC/TDnYUyOkcGl9YnMpIZYQa2GlTcv9+xjMq6+BkiwyCoUI8HJdjhHDJU+5jUXeS0qxNBZ43QDxeFa5ejsLNJUV+3ESRtzFUYjaDX3DzUbHnFyqPdZejjCN5v/Um1n3jTu8wp4aIuTUq8CknbRbto0G43pZevBRYJPXeyqq8/7+00MXXT3/I0uac/hbO+mREVDVJ074gQb2wvGbiQrGXJoM4Z/b/69VDu786GRnAs1EZmaEEu/v+HLRzkzJhjhRrZv9f72yT1WqXQ=
-  app: my-app-v4
-      # master: my-app-staging
-      # production: my-app-production
-    on:
-      branch: master
-after-deploy:
+  app:
+    my-app-v4
+    # master: my-app-staging
+    # production: my-app-production
+  on:
+    branch: master
+
+after_deploy:
   - echo "DONE....."
 
 notifications:
