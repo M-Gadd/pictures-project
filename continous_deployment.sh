@@ -8,6 +8,6 @@ echo $HEROKU_AUTH | docker login --username=gad.mostafa@gmail.com --password-std
 # heroku container:login
 heroku container:push --app=my-app-v4 web
 heroku container:release --app=my-app-v4 web
-heroku open --app=my-app-v4
-heroku logs --tail --app=my-app-v4
+# heroku open --app=my-app-v4
+# heroku logs --tail --app=my-app-v4
 
