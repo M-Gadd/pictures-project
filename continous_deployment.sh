@@ -1,6 +1,8 @@
 #! /bin/bash
 set -ev
-set HEROKU_API_KEY=$HEROKU_AUTH
+HEROKU_API_KEY=$HEROKU_AUTH
+
+echo $HEROKU_AUTH
 # echo $HEROKU_AUTH | docker login --username=gad.mostafa@gmail.com --password-stdin registry.heroku.com
 # docker login --username=mgad --password=$HEROKU_AUTH registry.heroku.com
 # heroku container:login
