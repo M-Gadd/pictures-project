@@ -1,8 +1,15 @@
 sudo: require
 language: generic
+env:
+  global:
+    - DOCKER_COMPOSE_VERSION=1.23.2
 services:
   - docker
 before-install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
   - docker build -t mgad/docker-react ./frontend
   - chmod +x ./continous_deployment.sh
   # - echo "$HEROKU_AUTH" | docker login --username=mgad --password-stdin registry.heroku.com
@@ -10,13 +17,14 @@ before-install:
 
 script:
   - docker run -e CI=true mgad/docker-react npm run test
+  - docker-compose build
   # - "./continous_deployment.sh"
 
-deploy:
-  provider: script
-  script: bash continous_deployment
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: bash continous_deployment
+#   on:
+#     branch: master
 # deploy:
 #   provider: heroku
 #   api_key:
