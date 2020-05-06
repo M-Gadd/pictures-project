@@ -17,9 +17,9 @@ before-install:
 
 script:
   - docker run -e CI=true mgad/docker-react npm run test
-  - docker-compose build
-  - docker-compose push
-  # - "./continous_deployment.sh"
+  # - docker-compose build
+  # - docker-compose push
+  - "./continous_deployment.sh"
 
 # deploy:
 #   provider: script

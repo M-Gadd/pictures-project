@@ -1,3 +1,4 @@
+# FROM node as builder
 FROM node
 
 # if left blank app will run with dev settings
@@ -9,9 +10,13 @@ ENV NODE_ENV $app_env
 
 RUN mkdir -p /frontend
 WORKDIR /frontend
-COPY ./ ./
+
+COPY package*.json yarn.lock ./
 
 RUN yarn install
+
+COPY ./ ./
+
 # RUN yarn build
 
 # if dev settings will use create-react start script for hot code relaoding via docker-compose shared volume
@@ -28,6 +33,13 @@ CMD if [ ${NODE_ENV} = production ]; \
 	fi
 
 EXPOSE 3000
+#####################################################################
+# FROM nginx
+# EXPOSE 3000
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# COPY --from=builder /frontend/build /usr/share/nginx/html
+#####################################################################
+
 
 # FROM nginx
 # COPY --from=builder /frontend/build /usr/share/nginx/html

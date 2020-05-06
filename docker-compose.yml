@@ -16,8 +16,18 @@ services:
       - MONGODB_DATABASE=${MONGODB_DATABASE}
       - MONGODB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME}
       - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
-    networks:
-      - app-tier
+    # networks:
+    #   - app-tier
+
+  nginx:
+    depends_on:
+      - api
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:80"
 
   api:
     build:
@@ -36,8 +46,8 @@ services:
       - AWS_S3_BUCKET=${AWS_S3_BUCKET}
       - AWS_S3_REGION=${AWS_S3_REGION}
       - API_SECRET=${API_SECRET}
-    networks:
-      - app-tier
+    # networks:
+    #   - app-tier
 
   frontend:
     build:
