@@ -18,9 +18,9 @@ before-install:
   - chmod +x ./continous_deployment.sh
   - echo "$HEROKU_AUTH" | docker login --username=_ --password-stdin registry.heroku.com
   # - docker login --username=mgad --password=$(HEROKU_AUTH) registry.heroku.com
-  - docker build -t registry.heroku.com/${my-app-v6}/web ./frontend --build-arg app_env=production
-  - docker build -t registry.heroku.com/${my-app-v6}/api ./api --build-arg app_env=production
-  - docker build -t registry.heroku.com/${my-app-v6}/nginx ./nginx
+  - docker build -t registry.heroku.com/my-app-v6/web ./frontend --build-arg app_env=production
+  - docker build -t registry.heroku.com/my-app-v6/api ./api --build-arg app_env=production
+  - docker build -t registry.heroku.com/my-app-v6/nginx ./nginx
 
 script:
   - docker run -e CI=true mgad/docker-react npm run test
@@ -28,9 +28,9 @@ script:
   # - docker-compose push
   # - "./continous_deployment.sh"
 after_success:
-  - docker push registry.heroku.com/${my-app-v6}/web
-  - docker push registry.heroku.com/${my-app-v6}/api
-  - docker push registry.heroku.com/${my-app-v6}/nginx
+  - docker push registry.heroku.com/my-app-v6/web
+  - docker push registry.heroku.com/my-app-v6/api
+  - docker push registry.heroku.com/my-app-v6/nginx
 # deploy:
 #   provider: script
 #   script: bash continous_deployment
