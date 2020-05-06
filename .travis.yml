@@ -5,6 +5,9 @@ env:
     - DOCKER_COMPOSE_VERSION=1.23.2
 services:
   - docker
+branches:
+  only:
+    - master
 before-install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -19,7 +22,7 @@ script:
   - docker run -e CI=true mgad/docker-react npm run test
   # - docker-compose build
   # - docker-compose push
-  - "./continous_deployment.sh"
+  # - "./continous_deployment.sh"
 
 # deploy:
 #   provider: script
