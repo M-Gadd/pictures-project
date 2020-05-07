@@ -12,9 +12,6 @@ echo $HEROKU_AUTH | docker login --username=gad.mostafa@gmail.com --password-std
 
 
 
-#!/bin/bash
-set -ev
-
 if [ "${TRAVIS_BRANCH}" = "staging" ]; then
   # kontena master login --token ${KONTENA_MASTER_TOKEN_STAGING} https://staging-master.bunch.ai/
   # kontena grid use staging
