@@ -10,13 +10,13 @@ before-install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - docker build -t mgad/docker-react ./frontend
+  # - docker build -t mgad/docker-react ./frontend
   - chmod +x ./continous_deployment.sh
   # - echo "$HEROKU_AUTH" | docker login --username=mgad --password-stdin registry.heroku.com
   # - docker login --username=mgad --password=$(HEROKU_AUTH) registry.heroku.com
 
 script:
-  - docker run -e CI=true mgad/docker-react npm run test
+  # - docker run -e CI=true mgad/docker-react npm run test
   # - docker-compose build
   # - docker-compose push
   - "./continous_deployment.sh"

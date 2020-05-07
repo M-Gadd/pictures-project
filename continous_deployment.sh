@@ -3,7 +3,7 @@ set -ev
 
 export HEROKU_API_KEY=$HEROKU_AUTH
 
-echo $HEROKU_AUTH | docker login --username=_ --password-stdin registry.heroku.com
+echo $HEROKU_AUTH | docker login --username=gad.mostafa@gmail.com --password-stdin registry.heroku.com
 # heroku container:login
 # heroku container:push --app=my-app-v4 web 
 # heroku container:release --app=my-app-v4 web
