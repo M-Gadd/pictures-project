@@ -12,11 +12,11 @@ echo $HEROKU_AUTH | docker login --username=gad.mostafa@gmail.com --password-std
 
 
 
-if [ "${TRAVIS_BRANCH}" = "staging" ]; then
+# if [ "${TRAVIS_BRANCH}" = "staging" ]; then
   # kontena master login --token ${KONTENA_MASTER_TOKEN_STAGING} https://staging-master.bunch.ai/
   # kontena grid use staging
   # kontena stack install kontena.yml || kontena stack upgrade --force phoenix kontena.yml;
-fi
+# fi
 
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
 
