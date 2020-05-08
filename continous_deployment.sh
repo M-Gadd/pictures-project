@@ -15,6 +15,7 @@ e-streetart
 if [ "${TRAVIS_BRANCH}" = "staging" ]; then
 
   echo "I AM STAGING"
+  echo "I AM STAGING"
 
   heroku container:push --app=my-app-v4 web 
   heroku container:release --app=my-app-v4 web
