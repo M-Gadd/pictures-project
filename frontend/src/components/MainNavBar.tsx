@@ -70,6 +70,12 @@ const MainNavBar = (props: any) => {
                     Street Art
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink style={{ color: "white" }} tag={NLink} to="/streetarts">
+                    {" "}
+                    I am staging
+                  </NavLink>
+                </NavItem>
               </Nav>
               <Nav className="ml-auto" navbar>
                 {/* </Col> */}
