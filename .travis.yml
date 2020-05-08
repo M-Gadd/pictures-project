@@ -20,7 +20,7 @@ script:
   # - docker-compose build
   # - docker-compose push
   # - "./continous_deployment.sh"
-  - - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./continous_deployment.sh; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./continous_deployment.sh; fi'
 
 # deploy:
 #   provider: script
