@@ -10,7 +10,7 @@ echo $HEROKU_AUTH | docker login --username=_ --password-stdin registry.heroku.c
 # heroku open --app=my-app-v4
 # heroku logs --tail --app=my-app-v4
 
-e-streetart
+
 
 if [ "${TRAVIS_BRANCH}" = "staging" ]; then
 
