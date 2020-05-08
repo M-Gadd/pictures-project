@@ -14,8 +14,6 @@ echo $HEROKU_AUTH | docker login --username=_ --password-stdin registry.heroku.c
 
 if [ "${TRAVIS_BRANCH}" = "staging" ]; then
 
-  echo "I AM STAGING"
-
   heroku container:push --app=my-app-v4 web 
   heroku container:release --app=my-app-v4 web
 
@@ -23,7 +21,6 @@ fi
 
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
 
-  echo "I AM MASTER"
   heroku container:push --app=e-streetart web 
   heroku container:release --app=e-streetart web
 
