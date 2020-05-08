@@ -15,7 +15,6 @@ const App: React.SFC<AppProps> = () => {
   return (
     <div>
       <MainNavBar />
-      <h2 style={{ color: "white" }}>Hello from whatever branch 2</h2>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/signup" component={Signup} />
