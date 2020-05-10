@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/M-Gadd/family-photos/api/middleware"
@@ -109,10 +108,8 @@ func (c Routes) StartServer() {
 	var port string
 	if key, bool := os.LookupEnv("PORT"); bool {
 		port = ":" + key
-		fmt.Println("I AM PORT:", port)
 	} else {
 		port = ":5000"
-		fmt.Println("I AM NOT PORT:", port)
 	}
 
 	r.Run(port)
