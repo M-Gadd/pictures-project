@@ -76,8 +76,15 @@ const Signup: React.SFC<SignupProps> = () => {
               placeholder="Email"
               name="Email"
               className="mt-3"
-              innerRef={register({ required: true, pattern: /^\S+@\S+$/i })}
+              innerRef={register({
+                required: "Required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "invalid email address",
+                },
+              })}
             />
+            {errors.email && errors.email.message}
             <Input
               type="password"
               placeholder="Password"

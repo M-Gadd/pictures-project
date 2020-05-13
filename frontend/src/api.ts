@@ -84,11 +84,12 @@ export default {
   async getUser(id: string) {
     return await service.get(`/users/${id}`);
   },
+
   async deleteUser(id: string) {
     return await service.delete(`/users/${id}`);
   },
-  async updateUser(id: string) {
-    return await service.put(`/users/${id}`);
+  async updateUser(id: string, data: any) {
+    return await service.put(`/users/${id}`, data);
   },
   async uploadImageUser(id: string, data: any) {
     return await service.post(`/users/image/${id}`, data);

@@ -122,11 +122,13 @@ const AllStreetArt: React.SFC<StreetArtProps> = () => {
                         <span style={{ float: "left" }} className="mr-2 mb-3">
                           <img
                             className="img_style_post"
-                            src={
-                              art.author.PictureURL
-                                ? art.author.PictureURL
-                                : DefaultProfile
-                            }
+                            src={art.UserPhoto ? art.UserPhoto : DefaultProfile}
+                            // src={`${
+                            //   api.getUserProfilePicture(art.AuthorID)
+                            //     ? api.getUserProfilePicture(art.AuthorID)
+                            //     : DefaultProfile
+                            // }
+                            //   `}
                             alt="no one"
                           />
                         </span>

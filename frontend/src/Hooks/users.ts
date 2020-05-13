@@ -21,6 +21,7 @@ export const useUser = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  // const userId = api.getLocalStorageUser() ? api.getLocalStorageUser().id : "";
   const location = useLocation();
 
   const fetchData = async () => {

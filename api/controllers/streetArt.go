@@ -33,7 +33,6 @@ func GetAllStreetArt(c *gin.Context) {
 
 	streetArts := models.StreetArts{}
 	err := db.C(StreetArtCollection).Find(bson.M{}).All(&streetArts)
-
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "Error Get All StreetArts",
@@ -41,8 +40,23 @@ func GetAllStreetArt(c *gin.Context) {
 		return
 	}
 
+	// To update the user picture on streetArt card
+	// to the current profile picture from backend
+	finalStreetArts := models.StreetArts{}
+	for i := range streetArts {
+		user := models.User{}
+		if err := db.C("user").FindId(streetArts[i].AuthorID).One(&user); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": "Error Get User",
+			})
+			return
+		}
+		streetArts[i].UserPhoto = user.PictureURL
+		finalStreetArts = append(finalStreetArts, streetArts[i])
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"streetArts": &streetArts,
+		"streetArts": &finalStreetArts,
 	})
 }
 

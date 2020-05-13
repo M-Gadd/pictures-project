@@ -44,7 +44,7 @@ func (c Routes) StartServer() {
 		// api.GET("/logout", handle_user.LogoutUser)
 		api.GET("/users", controllers.GetAllUser)
 		api.GET("/users/:id", controllers.GetUser)
-		// api.PUT("/users/:id", handle_user.UpdateUser)
+		api.PUT("/users/:id", controllers.UpdateUser)
 		api.DELETE("/users/:id", controllers.DeleteUser)
 	}
 

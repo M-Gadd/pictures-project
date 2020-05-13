@@ -1,8 +1,9 @@
 import React from "react";
 import { useUser } from "../../Hooks/users";
 import Default from "../../Assets/default.png";
-import { FormText, Button } from "reactstrap";
+import { FormText, Button, Row, Col } from "reactstrap";
 import api from "../../api";
+import EditUser from "../EditUser";
 
 export interface UserProps {}
 
@@ -21,16 +22,25 @@ const User: React.SFC<UserProps> = () => {
         src={user.PictureURL ? user.PictureURL : Default}
         alt="no one"
       />
-      <span style={{ color: "white" }}>
-        <h6>
-          {user.FirstName} {user.LastName}
-        </h6>
-      </span>
-      <span style={{ color: "white" }}>
-        <h6>{user.Email}</h6>
-      </span>
-
-      {user.id === api.getLocalStorageUser().id && <Button color="danger">Edit</Button>}
+      <Row className="mt-3">
+        <Col>
+          <span style={{ color: "white" }}>
+            <h6>
+              {user.FirstName} {user.LastName}
+            </h6>
+          </span>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col>
+          <span style={{ color: "white" }}>
+            <h6>{user.Email}</h6>
+          </span>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col>{user.id === api.getLocalStorageUser().id && <EditUser user={user} />}</Col>
+      </Row>
       <style>{`
          .img_style_post {
           border-radius: 50%; 
