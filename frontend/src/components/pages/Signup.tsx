@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../../api";
-import {
-  Button,
-  FormGroup,
-  CustomInput,
-  Form,
-  Input,
-  Container,
-  Row,
-  Col,
-  FormText,
-} from "reactstrap";
+import { CustomInput, Input, Container, Row, Col, FormText } from "reactstrap";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 
 export interface SignupProps {}
 
@@ -20,8 +9,6 @@ const Signup: React.SFC<SignupProps> = () => {
   const [file, setFile] = useState() as any;
   const [uploadedFile, setUploadedFile] = useState() as any;
   const { register, handleSubmit, errors } = useForm();
-
-  const history = useHistory();
 
   const onSubmit = async (data: any) => {
     await api.signup(data).then((res) => {
@@ -76,8 +63,15 @@ const Signup: React.SFC<SignupProps> = () => {
               placeholder="Email"
               name="Email"
               className="mt-3"
-              innerRef={register({ required: true, pattern: /^\S+@\S+$/i })}
+              innerRef={register({
+                required: "Required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "invalid email address",
+                },
+              })}
             />
+            {errors.email && errors.email.message}
             <Input
               type="password"
               placeholder="Password"
@@ -93,14 +87,7 @@ const Signup: React.SFC<SignupProps> = () => {
               className="mt-3"
               onChange={(e) => handleImageChange(e)}
             />
-            {/* <Button
-              className="style_photo_button"
-              color="primary"
-              type="submit"
-              disabled={uploadedFile == null || file == null}
-            >
-              Update Photo
-            </Button> */}
+
             <FormText color="muted">Please upload a photo less than 1MBs</FormText>
 
             <input

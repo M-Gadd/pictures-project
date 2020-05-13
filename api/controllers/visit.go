@@ -53,7 +53,6 @@ func GetAllVisitsForOneStreetArt(c *gin.Context) {
 	users := models.Users{}
 
 	for i := range visits {
-		fmt.Println("Inside loop", visits[i])
 
 		user := models.User{}
 		err := db.C("user").FindId(visits[i].User).One(&user)
@@ -67,8 +66,6 @@ func GetAllVisitsForOneStreetArt(c *gin.Context) {
 		users = append(users, user)
 
 	}
-
-	fmt.Println("I ACTUALLY DID IT: ", users)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

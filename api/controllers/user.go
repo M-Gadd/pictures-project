@@ -71,6 +71,8 @@ func GetUser(c *gin.Context) {
 		return
 	}
 
+	user.Password = ""
+
 	c.JSON(http.StatusOK, gin.H{
 		"user": &user,
 	})
@@ -198,46 +200,57 @@ func CreateUser(c *gin.Context) {
 }
 
 // UpdateUser Endpoint
-// func UpdateUser(c *gin.Context) {
-// 	db := *DataBaseInit()
-// 	fmt.Println("MONGO RUNNING: ", db)
+func UpdateUser(c *gin.Context) {
+	db := *DataBaseInit()
+	fmt.Println("MONGO RUNNING: ", db)
+	defer db.Session.Close()
 
-// 	id := c.Param("id")                   // Get Param
-// 	idParse, errParse := strconv.Atoi(id) // Convert String to Int
-// 	if errParse != nil {
-// 		c.JSON(200, gin.H{
-// 			"message": "Error Parse Param",
-// 		})
-// 		return
-// 	}
+	id := c.Param("id") // Get Param
+	userID := bson.ObjectIdHex(id)
 
-// 	user := model_user.User{}
-// 	err := c.Bind(&user)
+	updatedUser := models.UpdateUser{}
 
-// 	if err != nil {
-// 		c.JSON(200, gin.H{
-// 			"message": "Error Get Body",
-// 		})
-// 		return
-// 	}
+	err := c.Bind(&updatedUser)
 
-// 	// user.ID = idParse
-// 	user.ID = bson.ObjectIdHex(id)
-// 	user.UpdatedAt = time.Now()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Error Get Body",
+		})
+		return
+	}
 
-// 	err = db.C(UserCollection).Update(bson.M{"id": &idParse}, user)
-// 	if err != nil {
-// 		c.JSON(200, gin.H{
-// 			"message": "Error Update User",
-// 		})
-// 		return
-// 	}
+	fmt.Println(updatedUser)
 
-// 	c.JSON(200, gin.H{
-// 		"message": "Succes Update User",
-// 		"user":    &user,
-// 	})
-// }
+	user := models.User{}
+
+	err = db.C(UserCollection).FindId(userID).One(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Error Get User",
+		})
+		return
+	}
+
+	user.FirstName = updatedUser.FirstName
+	user.LastName = updatedUser.LastName
+	user.Email = updatedUser.Email
+	user.UpdatedAt = time.Now()
+
+	err = db.C(UserCollection).UpdateId(userID, user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Error Update User",
+		})
+		return
+	}
+
+	user.Password = ""
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Succes Update User",
+		"user":    &user,
+	})
+}
 
 // DeleteUser Endpoint
 func DeleteUser(c *gin.Context) {

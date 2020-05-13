@@ -10,20 +10,18 @@ import {
   Input,
   CustomInput,
   FormText,
-  Col,
   Button,
 } from "reactstrap";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-export interface AddStreetArtProps {
-  // editStreetArt: boolean;
+export interface EditStreetArtProps {
   setAddStreetArt: any;
   art: any;
 }
 
-const EditStreetArt: React.SFC<AddStreetArtProps> = ({ setAddStreetArt, art }) => {
+const EditStreetArt: React.SFC<EditStreetArtProps> = ({ setAddStreetArt, art }) => {
   const [file, setFile] = useState() as any;
   const [uploadedFile, setUploadedFile] = useState() as any;
   const [location, setLocation] = useState() as any;
@@ -72,10 +70,7 @@ const EditStreetArt: React.SFC<AddStreetArtProps> = ({ setAddStreetArt, art }) =
         <FontAwesomeIcon
           onClick={() => {
             setEditStreetArt(true);
-            // <MyDropDown />;
           }}
-          // size="2x"
-          // className="pl-1"
           icon={faEdit}
         ></FontAwesomeIcon>
       </span>

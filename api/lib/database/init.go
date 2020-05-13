@@ -25,10 +25,8 @@ func Init() (*mgo.Database, error) {
 
 	if bool {
 		uri = key
-		fmt.Println("I AM KEY:", uri)
 		uriSplit := strings.Split(uri, "/")
 		dbName = uriSplit[len(uriSplit)-1]
-		fmt.Println("I AM dName:", dbName)
 	} else {
 		// uri = "mongodb://host.docker.internal:27017/family-photos"
 		// uri = "mongodb://MGad:54321@mongodb:27017/family-photos"

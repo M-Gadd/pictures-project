@@ -10,7 +10,6 @@ import {
   Input,
   CustomInput,
   FormText,
-  Col,
   Button,
 } from "reactstrap";
 import React from "react";
@@ -27,17 +26,9 @@ const AddStreetArt: React.SFC<AddStreetArtProps> = ({
   const [file, setFile] = useState() as any;
   const [uploadedFile, setUploadedFile] = useState() as any;
   const [location, setLocation] = useState() as any;
-  // const [visited, setVisited] = useState() as any;
-
-  // const addStreetArt = () => {
-  //   setModal(!modal);
-  // };
-
-  // useEffect(() => {}, [streetArt]);
 
   const toggle = (e: any) => {
     e.preventDefault();
-    // setModal(!modal);
     setAddStreetArt(false);
   };
 
@@ -57,25 +48,20 @@ const AddStreetArt: React.SFC<AddStreetArtProps> = ({
     // e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    // userAvatarUpdate(formData);
     api.uploadImageStreetArt(id, formData);
-    // console.log(formData);
   };
 
   const submitStreetArt = async (e: any) => {
     e.preventDefault();
     let data = {
       location,
-      // visited,
       authorId: api.getLocalStorageUser().id,
     };
 
     // submitStreetArtImage();
     await api.createStreetArt(data).then((res) => {
-      // window.location.href = "/"
-      // console.log("Sent", res.data.StreetArt.id),
       submitStreetArtImage(res.data.StreetArt.id);
-      // setModal(!modal);
+
       setAddStreetArt(false);
     });
   };
@@ -97,7 +83,6 @@ const AddStreetArt: React.SFC<AddStreetArtProps> = ({
 
           <FormGroup>
             <Label for="exampleFile">Image</Label>
-            {/* <Input type="file" name="file" id="exampleFile" /> */}
             <CustomInput
               type="file"
               accept="image/*"
@@ -107,52 +92,14 @@ const AddStreetArt: React.SFC<AddStreetArtProps> = ({
             <FormText color="muted">Please upload a photo less than 1MBs</FormText>
           </FormGroup>
 
-          {/* <FormGroup tag="fieldset" row>
-            <legend className="col-form-label col-sm-2">Radio Buttons</legend>
-            <Col xs={6}>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    onChange={(e) => setVisited(e.target.value)}
-                    type="radio"
-                    name="radio2"
-                    value="visited"
-                  />{" "}
-                  Visited
-                </Label>
-              </FormGroup>
-            </Col>
-            <Col xs={6}>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    onChange={(e) => setVisited(e.target.value)}
-                    type="radio"
-                    name="radio2"
-                    value="not visited"
-                  />{" "}
-                  Not Visited
-                </Label>
-              </FormGroup>
-            </Col>
-          </FormGroup> */}
-
           <Button
-            disabled={
-              uploadedFile == null || file == null || location == null
-              // || visited == null
-            }
+            disabled={uploadedFile == null || file == null || location == null}
             type="submit"
           >
             Submit
           </Button>
         </Form>
       </ModalBody>
-      {/* <ModalFooter>
-      <Button color="secondary" onClick={toggle}>
-        Cancel
-      </Button>
-    </ModalFooter> */}
     </Modal>
   );
 };
