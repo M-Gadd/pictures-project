@@ -1,6 +1,5 @@
 import api from "../api";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 export const useProfileStreetArt = () => {
   const [streetArt, setStreetArt] = useState(Array);

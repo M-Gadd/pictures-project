@@ -16,15 +16,6 @@ import (
 // StreetArtCollection Static Collection
 const StreetArtCollection = "StreetArt"
 
-// // Get DB from Mongo Config
-// func DataBaseInit() *mgo.Database {
-// 	db, err := database.Init()
-// 	if err != nil {
-// 		fmt.Println(err)
-// 	}
-// 	return db
-// }
-
 // GetAllStreetArt Endpoint
 func GetAllStreetArt(c *gin.Context) {
 	db := *DataBaseInit()
@@ -41,7 +32,7 @@ func GetAllStreetArt(c *gin.Context) {
 	}
 
 	// To update the user picture on streetArt card
-	// to the current profile picture from backend
+	// to the current profile picture
 	finalStreetArts := models.StreetArts{}
 	for i := range streetArts {
 		user := models.User{}
@@ -66,7 +57,7 @@ func GetOneUserStreetArt(c *gin.Context) {
 	fmt.Println("MONGO RUNNING: ", db)
 	defer db.Session.Close()
 
-	id := c.Param("user") // Get Param
+	id := c.Param("user")
 	userID := bson.ObjectIdHex(id)
 
 	streetArts := models.StreetArts{}
@@ -88,20 +79,18 @@ func GetSearchStreetArt(c *gin.Context) {
 	fmt.Println("MONGO RUNNING: ", db)
 	defer db.Session.Close()
 
-	// var location string
-	// err := c.Bind(&location)
-	body, _ := c.GetRawData()
-	fmt.Println("Location: ", string(body))
+	body, err := c.GetRawData()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Error Get Body",
+		})
+		return
+	}
+
 	location := string(body)
-	// if err != nil {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "Error Get Body",
-	// 	})
-	// 	return
-	// }
 
 	streetArts := models.StreetArts{}
-	err := db.C(StreetArtCollection).Find(bson.M{"location": location}).All(&streetArts)
+	err = db.C(StreetArtCollection).Find(bson.M{"location": location}).All(&streetArts)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -165,8 +154,6 @@ func UploadStreetArtImage(c *gin.Context) {
 
 	streetArt.PictureURL = uploadedFile
 
-	fmt.Println("file from newwww: ", uploadedFile)
-
 	err = db.C(StreetArtCollection).UpdateId(streetArtID, streetArt)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -199,7 +186,6 @@ func CreateStreetArt(c *gin.Context) {
 		return
 	}
 
-	// fmt.Println("----***--------->", streetArt)
 	user := models.User{}
 
 	error := db.C("user").FindId(streetArt.AuthorID).One(&user)
@@ -214,8 +200,6 @@ func CreateStreetArt(c *gin.Context) {
 	streetArt.CreatedAt = time.Now()
 	streetArt.UpdatedAt = time.Now()
 	streetArt.Author = user
-
-	// fmt.Println("----***--------->", streetArt)
 
 	err = db.C(StreetArtCollection).Insert(streetArt)
 

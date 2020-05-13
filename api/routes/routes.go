@@ -26,8 +26,6 @@ func (c Routes) StartServer() {
 		c.File("./web/index.html")
 	})
 
-	// database.Init()
-
 	store := sessions.NewCookieStore([]byte("sessionSuperSecret"))
 	r.Use(sessions.Sessions("sessionName", store))
 
@@ -59,7 +57,6 @@ func (c Routes) StartServer() {
 		streetArt.POST("/streetart/image/:id", controllers.UploadStreetArtImage)
 		// streetArt.GET("/streetart/:id", controllers.GetStreetArt)
 
-		// api.PUT("/users/:id", handle_user.UpdateUser)
 		streetArt.DELETE("/streetart/:id", controllers.DeleteStreetArt)
 	}
 
@@ -68,43 +65,25 @@ func (c Routes) StartServer() {
 	{
 		visit.GET("/visits", controllers.GetAllVisits)
 		visit.GET("/visit/:postId", controllers.GetAllVisitsForOneStreetArt)
-		// visit.GET("/visit/user/:user", controllers.GetOneUservisit)
-		// visit.GET("/visit/visit/:art", controllers.GetOneUservisit)
 		visit.POST("/visit", middleware.TokenAuthMiddleware(), controllers.CreateVisit)
-		// visit.POST("/visit/image/:id", controllers.UploadvisitImage)
-		// visit.GET("/visit/:id", controllers.Getvisit)
-
-		// api.PUT("/users/:id", handle_user.UpdateUser)
 		visit.DELETE("/visit/:id", controllers.DeleteVisit)
 	}
 
 	like := r.Group("/api")
-	// streetArt.Use(handle_auth.AuthenticationRequired())
+	// like.Use(handle_auth.AuthenticationRequired())
 	{
 		like.GET("/likes", controllers.GetAllLikes)
 		like.GET("/like/:postId", controllers.GetAllLikesForOneStreetArt)
-		// visit.GET("/visit/user/:user", controllers.GetOneUservisit)
-		// visit.GET("/visit/visit/:art", controllers.GetOneUservisit)
 		like.POST("/like", middleware.TokenAuthMiddleware(), controllers.CreateLike)
-		// visit.POST("/visit/image/:id", controllers.UploadvisitImage)
-		// visit.GET("/visit/:id", controllers.Getvisit)
-
-		// api.PUT("/users/:id", handle_user.UpdateUser)
 		like.DELETE("/like/:id", controllers.DeleteLike)
 	}
 
 	comment := r.Group("/api")
-	// streetArt.Use(handle_auth.AuthenticationRequired())
+	// comment.Use(handle_auth.AuthenticationRequired())
 	{
-		// comment.GET("/comments", controllers.GetAllLikes)
-		comment.GET("/comment/:postId", controllers.GetAllCommentsForOneStreetArt)
-		// visit.GET("/visit/user/:user", controllers.GetOneUservisit)
-		// visit.GET("/visit/visit/:art", controllers.GetOneUservisit)
-		comment.POST("/comment", middleware.TokenAuthMiddleware(), controllers.CreateComment)
-		// visit.POST("/visit/image/:id", controllers.UploadvisitImage)
-		// visit.GET("/visit/:id", controllers.Getvisit)
 
-		// api.PUT("/users/:id", handle_user.UpdateUser)
+		comment.GET("/comment/:postId", controllers.GetAllCommentsForOneStreetArt)
+		comment.POST("/comment", middleware.TokenAuthMiddleware(), controllers.CreateComment)
 		comment.DELETE("/comment/:id", controllers.DeleteComment)
 	}
 

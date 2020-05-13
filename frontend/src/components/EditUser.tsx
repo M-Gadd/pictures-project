@@ -1,33 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../api";
 import {
   Modal,
   ModalHeader,
   ModalBody,
-  Form,
-  FormGroup,
-  Label,
   Input,
   CustomInput,
   FormText,
-  Col,
   Button,
 } from "reactstrap";
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-export interface AddStreetArtProps {
-  // editStreetArt: boolean;
-  // setAddStreetArt: any;
+export interface EditUserProps {
   user: any;
-  // setUser: any;
 }
 
-const EditUser: React.SFC<AddStreetArtProps> = ({ user }) => {
-  const { register, handleSubmit, errors } = useForm();
+const EditUser: React.SFC<EditUserProps> = ({ user }) => {
+  const { register, handleSubmit } = useForm();
   const [file, setFile] = useState() as any;
   const [uploadedFile, setUploadedFile] = useState() as any;
   const [editUser, setEditUser] = useState(false);
@@ -35,10 +26,7 @@ const EditUser: React.SFC<AddStreetArtProps> = ({ user }) => {
   const [lastName, setLastName] = useState(user.LastName);
   const [email, setEmail] = useState(user.Email);
 
-  // const userId = api.getLocalStorageUser() ? api.getLocalStorageUser().id : "";
   const history = useHistory();
-
-  // useEffect(() => {}, [editUser]);
 
   const toggle = (e: any) => {
     e.preventDefault();
@@ -47,17 +35,15 @@ const EditUser: React.SFC<AddStreetArtProps> = ({ user }) => {
 
   const onSubmit = async (data: any) => {
     console.log("DATA", data);
-    await api.updateUser(user.id, data).then((res) => {
+    await api.updateUser(user.id, data).then(() => {
       if (uploadedFile) {
         submitUserAvatar(user.id);
       }
-      // setUser(res.data.user);
+
       setEditUser(false);
     });
-    // window.location.reload();
+
     history.go(0);
-    // history.push(`/user`, { id: user.id });
-    // window.location.href = `/user/${user.id}`;
   };
 
   const handleImageChange = (e: any) => {
@@ -123,13 +109,6 @@ const EditUser: React.SFC<AddStreetArtProps> = ({ user }) => {
               value={email}
               innerRef={register({ required: true, pattern: /^\S+@\S+$/i })}
             />
-            {/* <Input
-              type="password"
-              placeholder="Password"
-              name="Password"
-              className="mt-3"
-              innerRef={register({ required: true, min: 6, maxLength: 12 })}
-            /> */}
 
             <CustomInput
               type="file"
@@ -138,14 +117,7 @@ const EditUser: React.SFC<AddStreetArtProps> = ({ user }) => {
               className="mt-3"
               onChange={(e) => handleImageChange(e)}
             />
-            {/* <Button
-              className="style_photo_button"
-              color="primary"
-              type="submit"
-              disabled={uploadedFile == null || file == null}
-            >
-              Update Photo
-            </Button> */}
+
             <FormText color="muted">Please upload a photo less than 1MBs</FormText>
 
             <input

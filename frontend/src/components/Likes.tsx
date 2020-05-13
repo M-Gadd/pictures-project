@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useVisits, useVisitsForOneStreetArt } from "../Hooks/visits";
+import React from "react";
 import api from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faBus,
-  faRoute,
-  faPlane,
-  faPlaneArrival,
-  faPlaneDeparture,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FormText, Row, Col } from "reactstrap";
 import { useLikesForOneStreetArt } from "../Hooks/likes";
 
@@ -19,8 +10,6 @@ export interface LikesProps {
 }
 
 const Likes: React.SFC<LikesProps> = ({ streetArtId }) => {
-  // const { visits, isLoading, setVisits } = useVisits();
-
   const {
     likesForOneStreetArt,
     isLoading,
@@ -34,22 +23,11 @@ const Likes: React.SFC<LikesProps> = ({ streetArtId }) => {
   let likeId: any;
   let numberOfLikes = 0;
 
-  console.log("********", likesForOneStreetArt);
-  // console.log("VISITS ", visits);
-
-  // if (visits) {
-  //   visits.map((visit: any) => {
-  //     if (visit.userId === userId && visit.streetArtId == streetArtId) {
-  //       userLiked = true;
-  //       likeId = visit.id;
-  //     }
-  //   });
-  // }
   if (!isLoading) {
     numberOfLikes = likesForOneStreetArt ? likesForOneStreetArt.length : 0;
     likesForOneStreetArt &&
       likesForOneStreetArt.map((like: any) => {
-        if (like.userId === userId && like.streetArtId == streetArtId) {
+        if (like.userId === userId && like.streetArtId === streetArtId) {
           userLiked = true;
           likeId = like.id;
         }
@@ -102,50 +80,35 @@ const Likes: React.SFC<LikesProps> = ({ streetArtId }) => {
     setUsersLiked(newVisits.data.users);
   };
 
-  const visitToggle = async (e: any) => {
+  const visitToggle = async () => {
     userLiked ? removeLike() : addLike();
   };
-
-  // useEffect(() => {}, [visits]);
 
   return (
     <div className="style-fav">
       <div className="style-heart-outer">
         <span className="mr-4">
-          {
-            userId ? (
-              <Row>
-                <Col xs={12}>
-                  <span onClick={visitToggle}>
-                    <FontAwesomeIcon
-                      style={{ color: userLiked ? "red" : "" }}
-                      // onClick={() => handleVisits(art.id)}
-                      size="2x"
-                      className="mr-2 "
-                      icon={faHeart}
-                    />
+          {userId ? (
+            <Row>
+              <Col xs={12}>
+                <span onClick={visitToggle}>
+                  <FontAwesomeIcon
+                    style={{ color: userLiked ? "red" : "" }}
+                    size="2x"
+                    className="mr-2 "
+                    icon={faHeart}
+                  />
+                </span>
+                <br />
 
-                    {/* <span className="ml-2">{postLike}</span> */}
-                  </span>
-                  <br />
-                  {/* </Col>
-                <Col xs={9}> */}
-                  <FormText style={{ fontWeight: "bold" }} color="muted">
-                    {/* {likeParagraph} */}
-                    {numberOfLikes} Likes
-                  </FormText>
-                </Col>
-              </Row>
-            ) : (
-              ""
-            )
-            // : (
-            //   <span onClick={noAuth}>
-            //     <FaRegHeart className="style-heart" />
-            //     <span className="ml-2">{postLike}</span>
-            //   </span>
-            // )
-          }
+                <FormText style={{ fontWeight: "bold" }} color="muted">
+                  {numberOfLikes} Likes
+                </FormText>
+              </Col>
+            </Row>
+          ) : (
+            ""
+          )}
         </span>
       </div>
     </div>

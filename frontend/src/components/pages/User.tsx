@@ -1,7 +1,7 @@
 import React from "react";
 import { useUser } from "../../Hooks/users";
 import Default from "../../Assets/default.png";
-import { FormText, Button, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import api from "../../api";
 import EditUser from "../EditUser";
 
@@ -17,7 +17,6 @@ const User: React.SFC<UserProps> = () => {
   return (
     <div>
       <img
-        // style={{ width: "90vw", height: "60vh" }}
         className="img_style_post"
         src={user.PictureURL ? user.PictureURL : Default}
         alt="no one"

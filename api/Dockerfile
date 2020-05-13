@@ -6,7 +6,7 @@ FROM golang
 ARG app_env
 ENV APP_ENV $app_env
 
-# it is okay to leave user/gomore as long as you do not want to share code with other libraries
+
 COPY . /github.com/M-Gadd/family-photos/api
 WORKDIR /github.com/M-Gadd/family-photos/api
 
