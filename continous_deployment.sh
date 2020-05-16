@@ -39,7 +39,7 @@ fi
 # heroku ps:scale client=1 api=1 nginx=1
 
 
-# Then to build production images run:
+# Then to build production images run from old readme:
 # ```bash
 # $ docker build ./api --build-arg app_env=production
 # $ docker build ./frontend --build-arg app_env=production
