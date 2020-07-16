@@ -32,32 +32,32 @@ const items = [
   {
     src: Img4,
     altText: "Slide 4",
-    // caption: "Slide 3",
+    // caption: "Slide 4",
   },
   {
     src: Img5,
     altText: "Slide 5",
-    // caption: "Slide 3",
+    // caption: "Slide 5",
   },
   {
     src: Img6,
     altText: "Slide 6",
-    // caption: "Slide 3",
+    // caption: "Slide 6",
   },
   {
     src: Img7,
     altText: "Slide 7",
-    // caption: "Slide 3",
+    // caption: "Slide 7",
   },
   {
     src: Img8,
     altText: "Slide 8",
-    // caption: "Slide 3",
+    // caption: "Slide 8",
   },
   {
     src: Img9,
     altText: "Slide 9",
-    // caption: "Slide 3",
+    // caption: "Slide 9",
   },
 ];
 
@@ -71,8 +71,10 @@ const shuffle = (a: Object[]) => {
 
 export interface CarouselProps {}
 
-const MyCarousel = () => (
-  <UncontrolledCarousel controls={false} indicators={false} items={shuffle(items)} />
-);
+const MyCarousel = () => {
+  return (
+    <UncontrolledCarousel controls={false} indicators={false} items={shuffle(items)} />
+  );
+};
 
 export default MyCarousel;

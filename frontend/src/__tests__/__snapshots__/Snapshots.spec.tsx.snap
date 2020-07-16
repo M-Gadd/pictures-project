@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component Matches the snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="d-flex justify-content-center row"
+  >
+    <div
+      className="col-5"
+    >
+      <form
+        className="mt-5"
+        onSubmit={[Function]}
+      >
+        <input
+          className="= mt-5 form-control"
+          name="Email"
+          placeholder="Email"
+          type="text"
+        />
+        <input
+          className=" mt-5 form-control"
+          name="Password"
+          placeholder="Password"
+          type="password"
+        />
+        <input
+          className="mt-4 p-2"
+          style={
+            Object {
+              "borderRadius": "9%",
+            }
+          }
+          type="submit"
+          value="Login"
+        />
+        <style>
+          
+  .myInput:focus {
+    outline: none;
+  }
+  
+        </style>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MainNavBar component Matches the snapshot 1`] = `
+<a
+  className="d-flex justify-content-center nav-link"
+  onClick={[Function]}
+>
+  <div
+    className="col-12"
+  >
+    <div>
+      <nav
+        className="mainNavBBar navbar navbar-expand-md navbar-light bg-transparent"
+      >
+        <button
+          aria-label="Toggle navigation"
+          className="navbar-toggler"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </button>
+        <div
+          className="collapse navbar-collapse"
+          style={Object {}}
+        >
+          <ul
+            className="mr-auto navbar-nav"
+          >
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current="page"
+                className="nav-link active"
+                href="/"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current={null}
+                className="nav-link"
+                href="/streetart"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                My uploads
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current={null}
+                className="nav-link"
+                href="/users"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Users
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current={null}
+                className="nav-link"
+                href="/streetarts"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                 
+                Street Art
+              </a>
+            </li>
+          </ul>
+          <ul
+            className="ml-auto navbar-nav"
+          >
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current={null}
+                className="nav-link"
+                href="/signup"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Signup
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                aria-current={null}
+                className="nav-link"
+                href="/login"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Login
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <style>
+        
+            .mainNavBBar{
+              color: white
+            }
+
+            .custom-toggler .navbar-toggler-icon {
+             color: white
+            }
+          
+      </style>
+    </div>
+  </div>
+</a>
+`;
+
+exports[`Signup component Matches the snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="d-flex justify-content-center row"
+  >
+    <div
+      className="col-5"
+    >
+      <form
+        className="mt-5"
+        onSubmit={[Function]}
+      >
+        <input
+          className="mt-3 form-control"
+          name="FirstName"
+          placeholder="First name"
+          type="text"
+        />
+        <input
+          className="mt-3 form-control"
+          name="LastName"
+          placeholder="Last name"
+          type="text"
+        />
+        <input
+          className="mt-3 form-control"
+          name="Email"
+          placeholder="Email"
+          type="text"
+        />
+        <input
+          className="mt-3 form-control"
+          name="Password"
+          placeholder="Password"
+          type="password"
+        />
+        <div
+          className="mt-3 custom-file"
+        >
+          <input
+            accept="image/*"
+            className="custom-file-input"
+            id="exampleCustomFileBrowser"
+            onChange={[Function]}
+            type="file"
+          />
+          <label
+            className="custom-file-label"
+            htmlFor="exampleCustomFileBrowser"
+          >
+            Choose file
+          </label>
+        </div>
+        <small
+          className="form-text text-muted"
+        >
+          Please upload a photo less than 1MBs
+        </small>
+        <input
+          className="mt-3 p-2"
+          style={
+            Object {
+              "borderRadius": "9%",
+            }
+          }
+          type="submit"
+          value="Signup"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+`;

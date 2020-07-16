@@ -43,7 +43,7 @@ const Signup: React.SFC<SignupProps> = () => {
     <Container>
       <Row className="d-flex justify-content-center">
         <Col xs={5}>
-          <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
+          <form className="mt-5 " onSubmit={handleSubmit(onSubmit)}>
             <Input
               type="text"
               placeholder="First name"
